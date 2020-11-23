@@ -2,16 +2,19 @@ usersテーブル
 
 | Column          |Type     |Options  |
 | ----------------|---------|-------- |
-| nickname        |string   |         |
-| email           |string   |         |
-| password        |string   |         |
-| first_name      |string   |         |
-| last_name       |string   |         |
-| first_name_kana |string   |         |
-| last_name_kana  |string   |         |
-| birth_year      |integer  |         |
-| birth_month     |integer  |         |
-| birth_day       |integer  |         |
+| nickname        |string   |null: false         |
+| email           |string   |null: false         |
+| encrypted_password   |string   |null: false         |
+| first_name      |string   |null: false         |
+| last_name       |string   |null: false         |
+| first_name_kana |string   |null: false         |
+| last_name_kana  |string   |null: false         |
+| birthday        |date     |null: false         |
+
+### Association
+- has_many   :items
+- has_many   :orders
+- has_many   :deliveries
 
 itemsテーブル
 
@@ -20,23 +23,42 @@ itemsテーブル
 | name            |string        |null: false                     |
 | price           |integer       |null: false                     |
 | explanation     |text          |null: false                     |
-| category        |text          |null: false                     |
-| condition       |text          |null: false                     |
-| delivery_from   |string        |null: false                     |
-| delivery_fee    |string        |null: false                     |
-| delivery_date   |string        |null: false                     |
+| category_id     |integer       |null: false                     |
+| condition_id    |integer       |null: false                     |
+| delivery_from_id|integer       |null: false                     |
+| delivery_fee_id |integer       |null: false                     |
+| delivery_date_id|integer       |null: false                     |
 | user            |references    |null: false, foreign_key: true  |
+
+### Association
+- belongs_to :user
+- has_one    :order
 
 ordersテーブル
 
 | Column          |Type          |Options                         |
 | ----------------|--------------|------------------------------- |
 | price           |integer       |null: false                     |
+| item            |references    |null: false, foreign_key: true  |
+| delivery        |references    |null: false, foreign_key: true  |
+
+### Association
+- belongs_to :item
+- has_many   :deliveries
+
+deliveriesテーブル
+
+| Column          |Type          |Options                         |
+| ----------------|--------------|------------------------------- |
 | post_code       |integer       |null: false                     |
 | prefecture      |string        |null: false                     |
 | city            |string        |null: false                     |
 | address         |string        |null: false                     |
 | building_name   |string        |null: false                     |
 | phone_number    |string        |null: false                     |
-| items           |references    |null: false, foreign_key: true  |
-| users           |references    |null: false, foreign_key: true  |
+| order           |references    |null: false, foreign_key: true  |
+| user            |references    |null: false, foreign_key: true  |
+
+### Association
+- belongs_to :order
+- belongs_to :users
