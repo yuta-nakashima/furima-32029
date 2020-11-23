@@ -38,22 +38,22 @@ ordersテーブル
 | Column          |Type          |Options                         |
 | ----------------|--------------|------------------------------- |
 | item            |references    |null: false, foreign_key: true  |
-| delivery        |references    |null: false, foreign_key: true  |
+| user            |references    |null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one    :deliveries
+- has_one    :delivery
 
 deliveriesテーブル
 
 | Column          |Type          |Options                         |
 | ----------------|--------------|------------------------------- |
-| post_code       |integer       |null: false                     |
-| prefecture      |string        |null: false                     |
+| post_code       |string        |null: false                     |
+| prefecture_id   |integer       |null: false                     |
 | city            |string        |null: false                     |
 | address         |string        |null: false                     |
-| building_name   |string        |null: false                     |
+| building_name   |string        |                                |
 | phone_number    |string        |null: false                     |
 | order           |references    |null: false, foreign_key: true  |
 
