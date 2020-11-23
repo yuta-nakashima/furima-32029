@@ -14,7 +14,6 @@ usersテーブル
 ### Association
 - has_many   :items
 - has_many   :orders
-- has_many   :deliveries
 
 itemsテーブル
 
@@ -38,13 +37,13 @@ ordersテーブル
 
 | Column          |Type          |Options                         |
 | ----------------|--------------|------------------------------- |
-| price           |integer       |null: false                     |
 | item            |references    |null: false, foreign_key: true  |
 | delivery        |references    |null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :item
-- has_many   :deliveries
+- belongs_to :user
+- has_one    :deliveries
 
 deliveriesテーブル
 
@@ -57,8 +56,6 @@ deliveriesテーブル
 | building_name   |string        |null: false                     |
 | phone_number    |string        |null: false                     |
 | order           |references    |null: false, foreign_key: true  |
-| user            |references    |null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :order
-- belongs_to :users
