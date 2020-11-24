@@ -14,10 +14,10 @@ class Item < ApplicationRecord
   #validates :condition_id, numericality: { other_than: 1 } 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-    belongs_to :category
-    belongs_to :condition
-    belongs_to :delivery_from
-    belongs_to :delivery_date
-    belongs_to :delivery_fee
+    belongs_to_active_hash :category
+    belongs_to_active_hash :condition
+    belongs_to_active_hash :delivery_from
+    belongs_to_active_hash :delivery_date
+    belongs_to_active_hash :delivery_fee
   
 end
