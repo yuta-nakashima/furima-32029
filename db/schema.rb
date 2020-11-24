@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_070854) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.integer "price", null: false
     t.text "explanation", null: false
     t.integer "category_id", null: false
@@ -41,8 +42,10 @@ ActiveRecord::Schema.define(version: 2020_11_24_070854) do
     t.integer "delivery_from_id", null: false
     t.integer "delivery_fee_id", null: false
     t.integer "delivery_date_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
