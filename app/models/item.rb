@@ -1,9 +1,13 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  
-  validates :price,            format: { with: /\A[0-9]+\z/ } # , message: '半角数字を使用してください' }
-  validates :price,            numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :delivery_from
+  belongs_to_active_hash :delivery_date
+  belongs_to_active_hash :delivery_fee
   
   with_options presence:true do
     validates :name
@@ -16,10 +20,9 @@ class Item < ApplicationRecord
     validates :delivery_date_id
     validates :image
   end
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :category
-  belongs_to_active_hash :condition
-  belongs_to_active_hash :delivery_from
-  belongs_to_active_hash :delivery_date
-  belongs_to_active_hash :delivery_fee
+
+  validates :price,            format: { with: /\A[0-9]+\z/ } # , message: '半角数字を使用してください' }
+  validates :price,            numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }
+  
+
 end

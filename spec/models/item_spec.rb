@@ -19,12 +19,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
     it '商品の説明が必須であること' do
-      @item[:explanation] = ''
+      @item[:explanation] = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
     it 'カテゴリーの情報が必須であること' do
-      @item[:category_id] = ''
+      @item[:category_id] = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Condition can't be blank")
     end
     it '配送料の負担についての情報が必須であること' do
-      @item[:delivery_fee_id] = ''
+      @item[:delivery_fee_id] = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
     end
@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Delivery date can't be blank")
     end
     it '価格についての情報が必須であること' do
-      @item[:price] = ''
+      @item[:price] = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is invalid', 'Price is not a number')
     end
