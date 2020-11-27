@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
     end
   end
 
@@ -18,7 +20,6 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       render :index
-      #redirect_to item_orders_path #本当はrenderにしたい！！！
     end
   end
 
