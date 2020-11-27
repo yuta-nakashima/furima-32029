@@ -8,4 +8,4 @@ window.addEventListener('load', () => {
        profitDom.innerHTML = Math.floor(inputValue * 0.9)
 
   })
-});
+})
