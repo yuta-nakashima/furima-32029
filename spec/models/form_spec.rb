@@ -6,9 +6,6 @@ RSpec.describe Form, type: :model do
       @form = FactoryBot.build(:form)
     end
 
-  it "必要な情報を適切に入力すると、商品の購入ができること(クレジットカード決済ができること)" do
-    expect(@form).to be_valid?
-  end
   it "クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと" do
     @form.token = ""
     @form.valid?
