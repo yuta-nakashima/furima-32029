@@ -61,6 +61,17 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include("Phone number ハイフンを除く11桁で入力してください")
       end
+      it "user_idが必須であること" do
+        @form.user_id = nil
+        @form.valid?
+        expect(@form.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが必須であること" do
+        @form.item_id = nil
+        @form.valid?
+        expect(@form.errors.full_messages).to include("Item can't be blank")
+      end
+      
     end
   end
 end
