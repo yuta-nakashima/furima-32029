@@ -3,9 +3,19 @@ require 'rails_helper'
 RSpec.describe Form, type: :model do
   describe "商品購入機能" do
     before  do
-      @form = FactoryBot.build(:form)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      sleep(1)
+      @form = FactoryBot.build(:form, user_id: user.id, item_id: item.id)
     end
 
+  it"全てが正しい入力であれば登録ができる"do
+    expect(@form).to be_valid
+  end
+  it "buildingがなくても登録ができること" do
+    @form.building =""
+    @form.valid?
+  end
   it "クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと" do
     @form.token = ""
     @form.valid?
