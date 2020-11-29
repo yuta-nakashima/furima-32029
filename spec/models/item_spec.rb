@@ -3,7 +3,6 @@ require 'rails_helper'
 # bundle exec rspec spec/models/item_spec.rb
 
 RSpec.describe Item, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   describe '商品の出品登録' do
     before do
       @item = FactoryBot.build(:item)

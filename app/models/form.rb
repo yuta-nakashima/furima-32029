@@ -4,7 +4,7 @@ class Form
   
   # ここにバリデーションの処理を書く
   with_options presence: true do
-    validates :token, presence: true
+    validates :token
     validates :post_code,  format: {with: /\A\d{3}[-]\d{4}\z/,message: "ハイフンを含む8桁で入力してください"}
     validates :prefecture
     validates :city
