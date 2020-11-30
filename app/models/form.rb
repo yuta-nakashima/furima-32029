@@ -1,14 +1,14 @@
 class Form
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture, :city, :address, :building, :phone_number, :item_id, :token, :user_id
-  
+
   with_options presence: true do
     validates :token
-    validates :post_code,  format: {with: /\A\d{3}[-]\d{4}\z/,message: "ハイフンを含む8桁で入力してください"}
+    validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'ハイフンを含む8桁で入力してください' }
     validates :prefecture
     validates :city
     validates :address
-    validates :phone_number, format: {with: /\A\d{10,11}\z/,message:"ハイフンを除く11桁で入力してください"}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'ハイフンを除く11桁で入力してください' }
     validates :user_id
     validates :item_id
   end

@@ -23,11 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.order.present? || @item.user_id != current_user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order.present? || @item.user_id != current_user.id
   end
-  
+
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
@@ -37,7 +35,6 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
 
   def destroy
     if @item.user.id == current_user.id
@@ -55,6 +52,4 @@ class ItemsController < ApplicationController
   def item_params_id
     @item = Item.find(params[:id])
   end
-
-
 end
